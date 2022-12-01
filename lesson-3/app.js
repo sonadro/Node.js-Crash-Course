@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 
 // express app
 const app = express();
@@ -9,6 +10,13 @@ app.set('view engine', 'ejs');
 // listen for requests
 app.listen(3000);
 
+// Static files
+app.use(express.static('public'));
+
+// Third-party middleware
+app.use(morgan('dev'));
+
+// Serve sites
 app.get('/', (req, res) => {
     const blogs = [
         {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
